@@ -1,0 +1,7 @@
+ext {
+    config = [
+            compile: 32,
+            min: 21,
+            target: 32
+    ]
+}
