@@ -3,5 +3,9 @@ apply from: "${getRootDir().absolutePath}/scripts/android-library.gradle"
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
-    testImplementation 'junit:junit:4.13.2'
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation 'com.google.code.gson:gson:2.9.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.1'
 }
