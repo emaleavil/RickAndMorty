@@ -17,4 +17,5 @@ object JsonKeys {
     const val male = "male"
     const val female = "female"
     const val genderless = "genderless"
+    const val unknown = "unknown"
 }

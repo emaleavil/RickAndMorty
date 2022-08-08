@@ -1,9 +1,9 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package com.eeema.android.data
+package com.eeema.android.data.remote
 
 import com.eeema.android.data.api.RickAndMortyApi
-import com.eeema.android.data.datasource.CharactersDataSource
+import com.eeema.android.data.datasource.remote.CharactersDataSource
 import com.eeema.android.data.model.Character
 import com.eeema.android.data.model.Gender
 import com.eeema.android.data.model.Page

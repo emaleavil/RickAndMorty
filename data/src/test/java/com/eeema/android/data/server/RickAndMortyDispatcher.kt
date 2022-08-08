@@ -16,7 +16,9 @@ class RickAndMortyDispatcher : StatusDispatcher() {
 
     private fun MockResponse.handleSuccessResponse(request: RecordedRequest): MockResponse {
         return when (request.path) {
-            "/characters" -> this.setBodyFromFile("characters.json")
+            "/characters",
+            "/characters?page=0",
+            "/characters?page=1" -> this.setBodyFromFile("characters.json")
             "/characters?page=2" -> this.setBodyFromFile("characters_page_2.json")
             else -> this
         }

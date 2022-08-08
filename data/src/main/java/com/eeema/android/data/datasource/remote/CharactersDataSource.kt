@@ -1,4 +1,4 @@
-package com.eeema.android.data.datasource
+package com.eeema.android.data.datasource.remote
 
 import com.eeema.android.data.api.RickAndMortyApi
 import com.eeema.android.data.model.Character
