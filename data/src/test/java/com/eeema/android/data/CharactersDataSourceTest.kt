@@ -46,6 +46,7 @@ class CharactersDataSourceTest {
             val result = sut.characters()
 
             assertThat(result.size).isEqualTo(1)
+            assertThat(result.currentIndex).isEqualTo(1)
             assertThat(result.prevPageIndex).isNull()
             assertThat(result.nextPageIndex).isEqualTo(2)
             val character = result.getItem(0)
@@ -67,6 +68,7 @@ class CharactersDataSourceTest {
             val result = sut.characters(2)
 
             assertThat(result.size).isEqualTo(1)
+            assertThat(result.currentIndex).isEqualTo(2)
             assertThat(result.prevPageIndex).isNull()
             assertThat(result.nextPageIndex).isEqualTo(3)
             val character = result.getItem(0)

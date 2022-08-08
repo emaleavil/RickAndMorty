@@ -26,12 +26,26 @@ class PageDeserializer<T>(
         val pageNode = json.asJsonObject
         val infoNode = pageNode.getJsonObject(JsonKeys.info)
         val resultsNode = pageNode.getJsonArray(JsonKeys.results)
+        val nextIndex = infoNode.stringOrNull(JsonKeys.next).extractIndex()
+        val prevIndex = infoNode.stringOrNull(JsonKeys.prev).extractIndex()
 
         return Page(
-            infoNode.stringOrNull(JsonKeys.next).extractIndex(),
-            infoNode.stringOrNull(JsonKeys.prev).extractIndex(),
+            calculateCurrentIndex(prevIndex, nextIndex),
+            nextIndex,
+            prevIndex,
             resultsNode?.transformToList(context) ?: emptyList()
         )
+    }
+
+    private fun calculateCurrentIndex(
+        prevIndex: Int?,
+        nextIndex: Int?
+    ): Int {
+        return if (prevIndex != null) {
+            prevIndex + 1
+        } else if (nextIndex != null) {
+            nextIndex - 1
+        } else 1
     }
 
     private fun <T> JsonArray.transformToList(
