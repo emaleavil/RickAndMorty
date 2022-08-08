@@ -6,36 +6,29 @@ import com.eeema.android.data.model.Page
 import com.eeema.android.data.model.Status
 import com.eeema.android.data.utils.FileExtensions
 import com.google.common.truth.Truth.assertThat
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import org.junit.Before
 import org.junit.Test
 
 class PageDeserializerTest {
 
-    lateinit var gson: Gson
-
-    @Before
-    fun setUp() {
-        gson = GsonBuilder()
-            .registerTypeAdapter(
-                Character::class.java,
-                CharacterDeserializer()
-            )
-            .registerTypeAdapter(
-                PageDeserializer::class.java,
-                PageDeserializer(Character::class.java)
-            )
-            .create()
-    }
+    private val gson = GsonBuilder()
+        .registerTypeAdapter(
+            TypeToken.getParameterized(
+                TypeToken.get(Page::class.java).type,
+                TypeToken.get(Character::class.java).type
+            ).type,
+            PageDeserializer(Character::class.java)
+        )
+        .registerTypeAdapter(Character::class.java, CharacterDeserializer())
+        .create()
 
     @Test
     fun `Given empty json Then deserializer should returns empty Page`() {
         val result: Page<Character> = gson.fromJson(
             """{}""",
             TypeToken.getParameterized(
-                TypeToken.get(PageDeserializer::class.java).type,
+                TypeToken.get(Page::class.java).type,
                 TypeToken.get(Character::class.java).type
             ).type
         )
@@ -47,7 +40,7 @@ class PageDeserializerTest {
         val result: Page<Character> = gson.fromJson(
             """{"invalidKey":"invalidValue"}""",
             TypeToken.getParameterized(
-                TypeToken.get(PageDeserializer::class.java).type,
+                TypeToken.get(Page::class.java).type,
                 TypeToken.get(Character::class.java).type
             ).type
         )
@@ -59,7 +52,7 @@ class PageDeserializerTest {
         val result: Page<Character> = gson.fromJson(
             FileExtensions.readFileFromResources("characters.json"),
             TypeToken.getParameterized(
-                TypeToken.get(PageDeserializer::class.java).type,
+                TypeToken.get(Page::class.java).type,
                 TypeToken.get(Character::class.java).type
             ).type
         )
