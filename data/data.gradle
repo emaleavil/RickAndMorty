@@ -2,10 +2,10 @@ apply from: "${getRootDir().absolutePath}/scripts/android-library.gradle"
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation 'com.google.code.gson:gson:2.9.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation androidX.coreKtx
+    implementation externalLibs.retrofit
+    implementation externalLibs.gson
+    implementation externalLibs.retrofitGson
 
-    testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.1'
+    testImplementation tests.mockWebServer
 }
