@@ -1,5 +1,6 @@
 package com.eeema.android.data.model.deserializer
 
+import com.eeema.android.data.constants.JsonKeys
 import com.eeema.android.data.extensions.intOrThrow
 import com.eeema.android.data.extensions.stringOrThrow
 import com.eeema.android.data.model.Character
@@ -21,20 +22,20 @@ class CharacterDeserializer : JsonDeserializer<Character> {
     ): Character {
         val character = json.asJsonObject
         return Character(
-            character.intOrThrow("id"),
-            character.stringOrThrow("name"),
+            character.intOrThrow(JsonKeys.id),
+            character.stringOrThrow(JsonKeys.name),
             character.getStatus(),
-            character.stringOrThrow("species"),
+            character.stringOrThrow(JsonKeys.species),
             character.getGender(),
-            character.stringOrThrow("image"),
-            character.stringOrThrow("url")
+            character.stringOrThrow(JsonKeys.image),
+            character.stringOrThrow(JsonKeys.url)
         )
     }
 
     private fun JsonObject.getStatus(): Status = try {
-        when (get("status").asString.lowercase()) {
-            "alive" -> Status.Alived
-            "dead" -> Status.Dead
+        when (get(JsonKeys.status).asString.lowercase()) {
+            JsonKeys.alive -> Status.Alived
+            JsonKeys.dead -> Status.Dead
             else -> Status.Unknown
         }
     } catch (e: Throwable) {
@@ -42,10 +43,10 @@ class CharacterDeserializer : JsonDeserializer<Character> {
     }
 
     private fun JsonObject.getGender(): Gender = try {
-        when (get("gender").asString.lowercase()) {
-            "male" -> Gender.Male
-            "female" -> Gender.Female
-            "genderless" -> Gender.Genderless
+        when (get(JsonKeys.gender).asString.lowercase()) {
+            JsonKeys.male -> Gender.Male
+            JsonKeys.female -> Gender.Female
+            JsonKeys.genderless -> Gender.Genderless
             else -> Gender.Unknown
         }
     } catch (e: Throwable) {

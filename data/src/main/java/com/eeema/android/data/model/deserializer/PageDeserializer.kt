@@ -1,5 +1,6 @@
 package com.eeema.android.data.model.deserializer
 
+import com.eeema.android.data.constants.JsonKeys
 import com.eeema.android.data.extensions.getJsonArray
 import com.eeema.android.data.extensions.getJsonObject
 import com.eeema.android.data.extensions.stringOrNull
@@ -22,12 +23,12 @@ class PageDeserializer<T>(
     ): Page<Character> {
 
         val pageNode = json.asJsonObject
-        val infoNode = pageNode.getJsonObject("info")
-        val resultsNode = pageNode.getJsonArray("results")
+        val infoNode = pageNode.getJsonObject(JsonKeys.info)
+        val resultsNode = pageNode.getJsonArray(JsonKeys.results)
 
         return Page(
-            infoNode.stringOrNull("next"),
-            infoNode.stringOrNull("prev"),
+            infoNode.stringOrNull(JsonKeys.next),
+            infoNode.stringOrNull(JsonKeys.prev),
             resultsNode?.transformToList(context) ?: emptyList()
         )
     }
