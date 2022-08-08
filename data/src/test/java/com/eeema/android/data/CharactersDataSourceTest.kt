@@ -46,10 +46,8 @@ class CharactersDataSourceTest {
             val result = sut.characters()
 
             assertThat(result.size).isEqualTo(1)
-            assertThat(result.prevPageUrl).isNull()
-            assertThat(result.nextPageUrl)
-                .isEqualTo("https://rickandmortyapi.com/api/character?page=2")
-
+            assertThat(result.prevPageIndex).isNull()
+            assertThat(result.nextPageIndex).isEqualTo(2)
             val character = result.getItem(0)
             assertThat(character.id).isEqualTo(1)
             assertThat(character.name).isEqualTo("Rick Sanchez")
@@ -69,10 +67,8 @@ class CharactersDataSourceTest {
             val result = sut.characters(2)
 
             assertThat(result.size).isEqualTo(1)
-            assertThat(result.prevPageUrl).isNull()
-            assertThat(result.nextPageUrl)
-                .isEqualTo("https://rickandmortyapi.com/api/character?page=3")
-
+            assertThat(result.prevPageIndex).isNull()
+            assertThat(result.nextPageIndex).isEqualTo(3)
             val character = result.getItem(0)
             assertThat(character.id).isEqualTo(2)
             assertThat(character.name).isEqualTo("Morty Smith")

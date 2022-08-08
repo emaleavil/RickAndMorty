@@ -58,8 +58,8 @@ class PageDeserializerTest {
         )
         assertThat(result).isEqualTo(
             Page(
-                nextPageUrl = "https://rickandmortyapi.com/api/character?page=2",
-                prevPageUrl = null,
+                nextPageIndex = 2,
+                prevPageIndex = null,
                 data = listOf(
                     Character(
                         1,

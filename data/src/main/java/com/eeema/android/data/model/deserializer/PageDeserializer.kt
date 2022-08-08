@@ -11,6 +11,7 @@ import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import java.lang.reflect.Type
+import java.util.regex.Pattern
 
 class PageDeserializer<T>(
     private val clazz: Class<T>
@@ -27,8 +28,8 @@ class PageDeserializer<T>(
         val resultsNode = pageNode.getJsonArray(JsonKeys.results)
 
         return Page(
-            infoNode.stringOrNull(JsonKeys.next),
-            infoNode.stringOrNull(JsonKeys.prev),
+            infoNode.stringOrNull(JsonKeys.next).extractIndex(),
+            infoNode.stringOrNull(JsonKeys.prev).extractIndex(),
             resultsNode?.transformToList(context) ?: emptyList()
         )
     }
@@ -39,5 +40,16 @@ class PageDeserializer<T>(
         this.map<JsonElement?, T> { context.deserialize(it, clazz) }
     } catch (e: Throwable) {
         emptyList()
+    }
+
+    private fun String?.extractIndex(): Int? {
+        return this?.let {
+            val regex = ".*page=(\\d+).*"
+            val pattern = Pattern.compile(regex)
+            val matcher = pattern.matcher(it)
+            if (matcher.matches()) {
+                matcher.group(1)?.toInt()
+            } else null
+        }
     }
 }

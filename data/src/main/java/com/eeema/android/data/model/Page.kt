@@ -1,8 +1,8 @@
 package com.eeema.android.data.model
 
 data class Page<T>(
-    val nextPageUrl: String? = null,
-    val prevPageUrl: String? = null,
+    val nextPageIndex: Int? = null,
+    val prevPageIndex: Int? = null,
     val data: List<T>
 ) {
     val size: Int
