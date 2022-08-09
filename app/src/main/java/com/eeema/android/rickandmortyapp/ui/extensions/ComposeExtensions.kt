@@ -10,12 +10,14 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
+import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import com.google.accompanist.navigation.animation.composable
 
 fun NavGraphBuilder.animatedComposable(
     route: String,
+    arguments: List<NamedNavArgument> = emptyList(),
     enterTransition: (AnimatedContentScope<NavBackStackEntry>.() -> EnterTransition) =
         { slideIntoContainer(SlideDirection.Left, animationSpec = tween(1000)) },
     exitTransition: (AnimatedContentScope<NavBackStackEntry>.() -> ExitTransition) =
@@ -28,6 +30,7 @@ fun NavGraphBuilder.animatedComposable(
 ) {
     composable(
         route,
+        arguments,
         enterTransition = enterTransition,
         exitTransition = exitTransition,
         popExitTransition = popExitTransition,

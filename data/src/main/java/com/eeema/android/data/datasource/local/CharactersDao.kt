@@ -14,4 +14,7 @@ interface CharactersDao {
 
     @Query("SELECT * FROM characters WHERE page_id = :pageId")
     suspend fun characters(pageId: Int): List<DatabaseCharacter>
+
+    @Query("SELECT * FROM characters WHERE id = :id")
+    suspend fun character(id: Int): DatabaseCharacter
 }

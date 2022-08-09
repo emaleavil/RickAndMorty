@@ -7,7 +7,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.eeema.android.rickandmortyapp.ui.characters.CharactersScreen
+import com.eeema.android.rickandmortyapp.ui.constants.Constants
+import com.eeema.android.rickandmortyapp.ui.detail.DetailScreen
 import com.eeema.android.rickandmortyapp.ui.extensions.animatedComposable
 import com.eeema.android.rickandmortyapp.ui.extensions.navigate
 import com.eeema.android.rickandmortyapp.ui.model.Route
@@ -42,8 +46,11 @@ fun SetupNavigationGraph() {
         animatedComposable(Route.Characters.route) {
             CharactersScreen(navigate = navigationController::navigate)
         }
-        animatedComposable(Route.Details.route) {
-            // TODO: Create detail screen
+        animatedComposable(
+            Route.Details.route.plus("/{${Constants.characterIdKey}}"),
+            arguments = listOf(navArgument(Constants.characterIdKey) { type = NavType.IntType })
+        ) {
+            DetailScreen(id = it.arguments?.getInt(Constants.characterIdKey))
         }
     }
 }

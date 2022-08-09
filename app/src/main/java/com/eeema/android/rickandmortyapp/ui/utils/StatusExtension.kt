@@ -8,3 +8,11 @@ fun Status.toImageResource() = when (this) {
     is Status.Dead -> R.drawable.tombstone
     else -> R.drawable.unknown
 }
+
+fun Status.asStringResource(): Int {
+    return when (this) {
+        is Status.Alived -> R.string.status_alive
+        is Status.Dead -> R.string.status_dead
+        else -> R.string.status_unknown
+    }
+}

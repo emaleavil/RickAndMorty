@@ -22,6 +22,10 @@ class RickAndMortyRepository @Inject constructor(
         }
     }
 
+    override suspend fun character(id: Int): Character {
+        return converter.dbCharacterToCharacter(local.character(id))
+    }
+
     private suspend fun requestDataFromServer(pageIndex: Int?): Result<Page<Character>> {
         return runCatching {
             val characters = network.characters(pageIndex).also {

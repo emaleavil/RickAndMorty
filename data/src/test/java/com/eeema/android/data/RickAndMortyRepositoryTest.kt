@@ -55,6 +55,10 @@ class RickAndMortyRepositoryTest {
         override suspend fun characters(pageId: Int): List<DatabaseCharacter> {
             return data.filter { it.fromPage == pageId }
         }
+
+        override suspend fun character(id: Int): DatabaseCharacter {
+            return data.find { it.id == id }!!
+        }
     }
 
     private val sut = RickAndMortyRepository(

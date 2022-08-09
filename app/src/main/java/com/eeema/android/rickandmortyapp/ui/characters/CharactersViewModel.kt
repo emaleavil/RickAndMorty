@@ -16,22 +16,22 @@ class CharactersViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
 
-    private val _state: MutableStateFlow<ViewState> = MutableStateFlow(ViewState.Initial)
-    val state: StateFlow<ViewState>
+    private val _state = MutableStateFlow<CharactersState>(CharactersState.Initial)
+    val state: StateFlow<CharactersState>
         get() = _state
 
     init {
         viewModelScope.launch {
-            _state.value = ViewState.Loading
+            _state.value = CharactersState.Loading
             val result = withContext(Dispatchers.IO) { repository.characters() }
             _state.value = result.fold(
                 onSuccess = {
                     when (it.data.isNotEmpty()) {
-                        true -> ViewState.Success(it.data)
-                        false -> ViewState.Initial
+                        true -> CharactersState.Success(it.data)
+                        false -> CharactersState.Initial
                     }
                 },
-                onFailure = { ViewState.Failed }
+                onFailure = { CharactersState.Failed }
             )
         }
     }

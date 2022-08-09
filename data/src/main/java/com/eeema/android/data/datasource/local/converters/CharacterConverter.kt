@@ -12,17 +12,7 @@ import javax.inject.Inject
 class CharacterConverter @Inject constructor() {
 
     fun dbCharacterToPage(dbCharacters: List<DatabaseCharacter>): Page<Character> {
-        val characters = dbCharacters.map { dbCharacter ->
-            Character(
-                dbCharacter.id,
-                dbCharacter.name,
-                dbCharacter.toStatus(),
-                dbCharacter.species,
-                dbCharacter.toGender(),
-                dbCharacter.image,
-                dbCharacter.url
-            )
-        }
+        val characters = dbCharacters.map { dbCharacterToCharacter(it) }
 
         val firstCharacter = dbCharacters.first()
         return Page(
@@ -48,5 +38,17 @@ class CharacterConverter @Inject constructor() {
                 page.nextPageIndex
             )
         }
+    }
+
+    fun dbCharacterToCharacter(dbCharacter: DatabaseCharacter): Character {
+        return Character(
+            dbCharacter.id,
+            dbCharacter.name,
+            dbCharacter.toStatus(),
+            dbCharacter.species,
+            dbCharacter.toGender(),
+            dbCharacter.image,
+            dbCharacter.url
+        )
     }
 }

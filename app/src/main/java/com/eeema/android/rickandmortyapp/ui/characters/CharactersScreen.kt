@@ -51,15 +51,16 @@ import com.eeema.android.rickandmortyapp.ui.utils.toImageResource
 @Composable
 fun CharactersScreen(
     viewModel: CharactersViewModel = hiltViewModel(),
-    navigate: (Route) -> Unit = {}
+    navigate: (String) -> Unit = {}
 ) {
     RickAndMortyScreenScaffold {
-        val state: ViewState by viewModel.state.collectAsState()
+        val state: CharactersState by viewModel.state.collectAsState()
         when (state) {
-            is ViewState.Initial -> EmptyScreen()
-            is ViewState.Loading -> LoaderScreen()
-            is ViewState.Failed -> ErrorScreen()
-            is ViewState.Success -> ListScreen((state as ViewState.Success).data, navigate)
+            is CharactersState.Initial -> EmptyScreen()
+            is CharactersState.Loading -> LoaderScreen()
+            is CharactersState.Failed -> ErrorScreen()
+            is CharactersState.Success ->
+                ListScreen((state as CharactersState.Success).data, navigate)
         }
     }
 }
@@ -67,7 +68,7 @@ fun CharactersScreen(
 @Composable
 fun ListScreen(
     data: List<Character>,
-    navigate: (Route) -> Unit = {}
+    navigate: (String) -> Unit = {}
 ) {
     LazyColumn { items(items = data) { character -> ItemContent(character, navigate) } }
 }
@@ -75,13 +76,13 @@ fun ListScreen(
 @Composable
 fun ItemContent(
     character: Character,
-    navigate: (Route) -> Unit = {}
+    navigate: (String) -> Unit = {}
 ) {
     Card(
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
             .fillMaxWidth()
-            .clickable { navigate(Route.Details) },
+            .clickable { navigate(Route.Details.route.plus("/${character.id}")) },
         elevation = 2.dp,
         backgroundColor = MaterialTheme.colors.primaryVariant,
         shape = RoundedCornerShape(corner = CornerSize(16.dp))
@@ -111,7 +112,7 @@ fun CharacterBody(
         ) {
             Text(
                 text = title,
-                style = typography.subtitle1,
+                style = typography.h6,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
