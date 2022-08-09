@@ -5,6 +5,9 @@ ext {
             target: 32
     ]
     versions = [
+            accompanist: '0.26.0-alpha',
+            activityCompose : '1.4.0',
+            compose         : '1.2.0',
             coreKtx: '1.8.0',
             gson: '2.9.1',
             retrofit: '2.9.0',
@@ -21,6 +24,18 @@ ext {
             ]
     ]
     androidX = [
+            compose: [
+                    accompanist: [
+                            navigation: "com.google.accompanist:accompanist-navigation-animation:$versions.accompanist",
+                            uiSystemController: "com.google.accompanist:accompanist-systemuicontroller:$versions.accompanist"
+                    ],
+                    activity: "androidx.activity:activity-compose:$versions.activityCompose",
+                    material: "androidx.compose.material:material:$versions.compose",
+                    navigation: "androidx.navigation:navigation-compose:$versions.navigation",
+                    preview : "androidx.compose.ui:ui-tooling-preview:$versions.compose",
+                    ui      : "androidx.compose.ui:ui:$versions.compose",
+                    uiTooling: "androidx.compose.ui:ui-tooling:$versions.compose"
+            ],
             coreKtx: "androidx.core:core-ktx:$versions.coreKtx",
             room: "androidx.room:room-runtime:$versions.room",
             roomCompiler: "androidx.room:room-compiler:$versions.room",
@@ -39,6 +54,8 @@ ext {
             junit: "junit:junit:$versions.tests.junit",
             mockK: "io.mockk:mockk:$versions.tests.mockK",
             mockWebServer: "com.squareup.okhttp3:mockwebserver:$versions.tests.mockWebServer",
-            truth: "com.google.truth:truth:$versions.tests.truth"
+            truth: "com.google.truth:truth:$versions.tests.truth",
+            uiTestJunit: "androidx.compose.ui:ui-test-junit4:$versions.compose",
+            uiTestManifest: "androidx.compose.ui:ui-test-manifest:$versions.compose"
     ]
 }
