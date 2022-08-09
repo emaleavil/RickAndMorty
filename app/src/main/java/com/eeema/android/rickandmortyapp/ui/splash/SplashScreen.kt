@@ -22,16 +22,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.eeema.android.rickandmortyapp.R
 import com.eeema.android.rickandmortyapp.ui.components.RickAndMortyScreenScaffold
+import com.eeema.android.rickandmortyapp.ui.model.Route
 import com.eeema.android.rickandmortyapp.ui.theme.RickAndMortyTheme
 import com.eeema.android.rickandmortyapp.ui.theme.splashFont
 import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
-    animationTime: Int = 300
+    animationTime: Int = 500,
+    navigate: (Route) -> Unit = {}
 ) {
     LaunchedEffect(key1 = true) {
         delay(animationTime.toLong())
+        navigate(Route.Characters)
     }
     SplashContent()
 }

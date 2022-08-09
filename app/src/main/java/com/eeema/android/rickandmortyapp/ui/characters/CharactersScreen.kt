@@ -3,6 +3,7 @@ package com.eeema.android.rickandmortyapp.ui.characters
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -42,12 +43,14 @@ import com.eeema.android.data.model.Gender
 import com.eeema.android.data.model.Status
 import com.eeema.android.rickandmortyapp.R
 import com.eeema.android.rickandmortyapp.ui.components.RickAndMortyScreenScaffold
+import com.eeema.android.rickandmortyapp.ui.model.Route
 import com.eeema.android.rickandmortyapp.ui.theme.RickAndMortyTheme
 import com.eeema.android.rickandmortyapp.ui.utils.toImageResource
 
 @Composable
 fun CharactersScreen(
-    viewModel: CharactersViewModel = CharactersViewModel()
+    viewModel: CharactersViewModel = CharactersViewModel(),
+    navigate: (Route) -> Unit = {}
 ) {
     RickAndMortyScreenScaffold {
         val state: ViewState by viewModel.state.collectAsState()
@@ -55,22 +58,31 @@ fun CharactersScreen(
             is ViewState.Initial -> EmptyScreen()
             is ViewState.Loading -> LoaderScreen()
             is ViewState.Failed -> ErrorScreen()
-            is ViewState.Success -> ListScreen((state as ViewState.Success).data)
+            is ViewState.Success -> ListScreen((state as ViewState.Success).data, navigate)
         }
     }
 }
 
 @Composable
-fun ListScreen(data: List<Character>) {
+fun ListScreen(
+    data: List<Character>,
+    navigate: (Route) -> Unit = {}
+) {
     LazyColumn(contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)) {
-        items(items = data) { character -> ItemContent(character) }
+        items(items = data) { character -> ItemContent(character, navigate) }
     }
 }
 
 @Composable
-fun ItemContent(character: Character) {
+fun ItemContent(
+    character: Character,
+    navigate: (Route) -> Unit = {}
+) {
     Card(
-        modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp).fillMaxWidth(),
+        modifier = Modifier
+            .padding(horizontal = 8.dp, vertical = 8.dp)
+            .fillMaxWidth()
+            .clickable { navigate(Route.Details) },
         elevation = 2.dp,
         backgroundColor = MaterialTheme.colors.primaryVariant,
         shape = RoundedCornerShape(corner = CornerSize(16.dp))

@@ -2,10 +2,10 @@
 <resources>
 
     <style name="Theme.RickAndMorty" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:statusBarColor">@color/backgroundColor</item>
+        <item name="android:navigationBarColor">@color/backgroundColor</item>
     </style>
 </resources>
