@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -61,7 +63,9 @@ dependencies {
     debugImplementation tests.uiTestManifest
 
     implementation("io.coil-kt:coil-compose:2.1.0")
-
+    implementation hiltDependencies.android
+    implementation androidX.compose.hiltNavigation
+    kapt hiltDependencies.compiler
 
     testImplementation tests.junit
     testImplementation tests.mockK
@@ -70,4 +74,6 @@ dependencies {
     androidTestImplementation tests.extJunit
     androidTestImplementation tests.espresso
     androidTestImplementation tests.uiTestJunit
+    androidTestImplementation tests.hilt
+    kaptAndroidTest hiltDependencies.compiler
 }

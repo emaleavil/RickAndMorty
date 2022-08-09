@@ -12,7 +12,6 @@ import com.eeema.android.data.model.Page
 import com.eeema.android.data.model.Status
 import com.eeema.android.data.model.deserializer.CharacterDeserializer
 import com.eeema.android.data.model.deserializer.PageDeserializer
-import com.eeema.android.data.model.error.Error
 import com.eeema.android.data.model.local.DatabaseCharacter
 import com.eeema.android.data.server.MockWebServerRule
 import com.eeema.android.data.server.ResponseStatus
@@ -73,9 +72,10 @@ class RickAndMortyRepositoryTest {
     fun `Request characters should return data from network when database is empty`() = runTest {
         assertThat(fakeDao.data).isEmpty()
 
-        val characters = sut.characters()
+        val result = sut.characters().getOrNull()
 
-        assertThat(characters.data).isNotEmpty()
+        assertThat(result).isNotNull()
+        assertThat(result!!.data).isNotEmpty()
     }
 
     @Test
@@ -100,12 +100,14 @@ class RickAndMortyRepositoryTest {
         assertThat(fakeDao.data).hasSize(2)
     }
 
-    @Test(expected = Error.CharactersNotRetrieved::class)
-    fun `When no local data is stored and server gets error Then CharactersNotRetrieved happens`() =
+    @Test
+    fun `When no local data is stored and server gets error Then Result should be failure`() =
         runTest {
             serverRule.setResponseStatus(ResponseStatus.NotFound)
 
-            sut.characters()
+            val result = sut.characters()
+
+            assertThat(result.isFailure).isTrue()
         }
 
     @Test
@@ -116,9 +118,9 @@ class RickAndMortyRepositoryTest {
 
         assertThat(fakeDao.data).hasSize(1)
 
-        val page = sut.characters(1)
-        val character = page.data.first()
-
+        val page = sut.characters(1).getOrNull()
+        assertThat(page).isNotNull()
+        val character = page!!.data.first()
         assertThat(fakeDao.data).hasSize(1)
         assertThat(page.currentIndex).isEqualTo(1)
         assertThat(page.prevPageIndex).isEqualTo(null)

@@ -4,8 +4,9 @@ import com.eeema.android.data.api.RickAndMortyApi
 import com.eeema.android.data.model.Character
 import com.eeema.android.data.model.Page
 import com.eeema.android.data.model.error.Error
+import javax.inject.Inject
 
-class CharactersDataSource(
+class CharactersDataSource @Inject constructor(
     private val api: RickAndMortyApi
 ) {
 

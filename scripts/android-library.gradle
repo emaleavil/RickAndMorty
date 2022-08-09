@@ -34,6 +34,10 @@ android {
 }
 
 dependencies {
+    implementation hiltDependencies.core
+    implementation hiltDependencies.android
+    kapt hiltDependencies.compiler
+
     testImplementation tests.junit
     testImplementation tests.mockK
     testImplementation tests.truth

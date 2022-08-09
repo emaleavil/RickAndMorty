@@ -7,8 +7,9 @@ import com.eeema.android.data.extensions.toStatus
 import com.eeema.android.data.model.Character
 import com.eeema.android.data.model.Page
 import com.eeema.android.data.model.local.DatabaseCharacter
+import javax.inject.Inject
 
-class CharacterConverter {
+class CharacterConverter @Inject constructor() {
 
     fun dbCharacterToPage(dbCharacters: List<DatabaseCharacter>): Page<Character> {
         val characters = dbCharacters.map { dbCharacter ->

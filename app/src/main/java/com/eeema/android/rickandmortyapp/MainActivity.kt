@@ -15,7 +15,9 @@ import com.eeema.android.rickandmortyapp.ui.splash.SplashScreen
 import com.eeema.android.rickandmortyapp.ui.theme.RickAndMortyTheme
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
