@@ -20,7 +20,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Text
@@ -40,7 +39,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.SubcomposeAsyncImage
+import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.eeema.android.data.model.Character
 import com.eeema.android.data.model.Gender
@@ -136,7 +135,7 @@ fun ItemContent(
 fun CharacterBody(
     title: String,
     body: String,
-    iconId: Int = R.drawable.tombstone
+    iconId: Int = R.drawable.ic_dead
 ) {
     Row(
         modifier = Modifier.fillMaxSize().padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
@@ -169,12 +168,12 @@ fun CharacterImage(url: String) {
             .background(color = MaterialTheme.colors.primary),
         contentAlignment = Alignment.Center
     ) {
-        SubcomposeAsyncImage(
+        AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(url)
                 .crossfade(true)
                 .build(),
-            loading = { CircularProgressIndicator() },
+            placeholder = painterResource(R.drawable.ic_brand),
             contentDescription = stringResource(R.string.characters_image_content_description),
             contentScale = ContentScale.Crop,
             modifier = Modifier.padding(16.dp).clip(CircleShape).size(148.dp)

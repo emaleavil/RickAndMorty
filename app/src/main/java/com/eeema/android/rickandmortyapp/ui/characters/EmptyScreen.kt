@@ -44,7 +44,7 @@ fun EmptyScreen(
                     .background(color = MaterialTheme.colors.onPrimary, shape = CircleShape)
             ) {
                 Image(
-                    painter = painterResource(R.drawable.empty),
+                    painter = painterResource(R.drawable.ic_empty),
                     modifier = Modifier.size(200.dp).padding(32.dp),
                     contentDescription = stringResource(R.string.empty_image_description)
                 )

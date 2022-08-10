@@ -44,7 +44,7 @@ fun ErrorScreen(
                     .background(color = MaterialTheme.colors.onPrimary, shape = CircleShape)
             ) {
                 Image(
-                    painter = painterResource(R.drawable.error_image),
+                    painter = painterResource(R.drawable.ic_error),
                     modifier = Modifier.size(200.dp).padding(32.dp),
                     contentDescription = stringResource(R.string.error_image_description)
                 )

@@ -4,9 +4,9 @@ import com.eeema.android.data.model.Status
 import com.eeema.android.rickandmortyapp.R
 
 fun Status.toImageResource() = when (this) {
-    is Status.Alive -> R.drawable.heartbeat
-    is Status.Dead -> R.drawable.tombstone
-    else -> R.drawable.unknown
+    is Status.Alive -> R.drawable.ic_alive
+    is Status.Dead -> R.drawable.ic_dead
+    else -> R.drawable.ic_unknown
 }
 
 fun Status.asStringResource(): Int {
