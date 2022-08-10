@@ -21,18 +21,28 @@ class CharactersViewModel @Inject constructor(
         get() = _state
 
     init {
-        viewModelScope.launch {
-            _state.value = CharactersState.Loading
-            val result = withContext(Dispatchers.IO) { repository.characters() }
-            _state.value = result.fold(
-                onSuccess = {
-                    when (it.data.isNotEmpty()) {
-                        true -> CharactersState.Success(it.data)
-                        false -> CharactersState.Initial
-                    }
-                },
-                onFailure = { CharactersState.Failed }
-            )
+        _state.value = CharactersState.Loading
+        loadItems(1)
+    }
+
+    fun loadItems(index: Int? = null) {
+        if (index != null) {
+            viewModelScope.launch {
+                val result = withContext(Dispatchers.IO) { repository.characters(index) }
+                _state.value = result.fold(
+                    onSuccess = {
+                        when (it.data.isNotEmpty()) {
+                            true -> {
+                                val shownState = state.value as? CharactersState.Success
+                                val shownData = shownState?.data ?: emptyList()
+                                CharactersState.Success(shownData.plus(it.data), it.nextPageIndex)
+                            }
+                            false -> CharactersState.Initial
+                        }
+                    },
+                    onFailure = { CharactersState.Failed }
+                )
+            }
         }
     }
 }
