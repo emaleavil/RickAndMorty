@@ -5,6 +5,7 @@ on:
   pull_request: # Executed this workflow when pull request to develop is created.
     branches:
       - develop
+      - master
 jobs:
 
   build:
