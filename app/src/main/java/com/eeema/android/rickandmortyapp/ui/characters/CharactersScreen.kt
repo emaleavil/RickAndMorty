@@ -3,7 +3,6 @@ package com.eeema.android.rickandmortyapp.ui.characters
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -48,6 +47,7 @@ import com.eeema.android.data.model.Gender
 import com.eeema.android.data.model.Status
 import com.eeema.android.rickandmortyapp.R
 import com.eeema.android.rickandmortyapp.ui.components.RickAndMortyScreenScaffold
+import com.eeema.android.rickandmortyapp.ui.extensions.clickableSingle
 import com.eeema.android.rickandmortyapp.ui.extensions.isFirstItemVisible
 import com.eeema.android.rickandmortyapp.ui.extensions.isLastItemVisible
 import com.eeema.android.rickandmortyapp.ui.model.Route
@@ -116,7 +116,7 @@ fun ItemContent(
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
             .fillMaxWidth()
-            .clickable { navigate(Route.Details.route.plus("/${character.id}")) },
+            .clickableSingle { navigate(Route.Details.route.plus("/${character.id}")) },
         elevation = 2.dp,
         backgroundColor = MaterialTheme.colors.primaryVariant,
         shape = RoundedCornerShape(corner = CornerSize(16.dp))
