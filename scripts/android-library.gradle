@@ -26,8 +26,21 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
+    sourceSets {
+        test {
+            resources.srcDirs += ['src/test/resources']
+        }
+    }
 }
 
 dependencies {
+    implementation hiltDependencies.core
+    implementation hiltDependencies.android
+    kapt hiltDependencies.compiler
 
+    testImplementation tests.junit
+    testImplementation tests.mockK
+    testImplementation tests.truth
+    testImplementation tests.coroutines
+    testImplementation tests.coreTesting
 }

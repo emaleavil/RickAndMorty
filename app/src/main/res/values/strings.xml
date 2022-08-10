@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">RickAndMortyApp</string>
+    <string name="app_name">Rick and Morty</string>
+    <string name="characters_image_content_description">Character image</string>
+    <string name="characters_status_description">Character status</string>
+    <string name="loader_waiting_text">"Please wait, we're retrieving data…"</string>
+    <string name="empty_title">No characters available</string>
+    <string name="empty_image_description">Empty data image</string>
+    <string name="error_title">Something went wrong</string>
+    <string name="error_image_description">Error image</string>
+    <string name="status_alive">Alive</string>
+    <string name="status_dead">Dead</string>
+    <string name="status_unknown">Unknown</string>
+    <string name="gender_genderless">Genderless</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_unknown">Unknown</string>
+    <string name="detail_specie_title">Specie:</string>
+    <string name="detail_status_title">Status:</string>
+    <string name="detail_gender_title">Gender:</string>
+    <string name="retry_button_title">Retry</string>
 </resources>
