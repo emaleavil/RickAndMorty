@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +29,9 @@ import com.eeema.android.rickandmortyapp.ui.components.RickAndMortyScreenScaffol
 import com.eeema.android.rickandmortyapp.ui.theme.RickAndMortyTheme
 
 @Composable
-fun EmptyScreen() {
+fun EmptyScreen(
+    retry: () -> Unit = {}
+) {
     RickAndMortyScreenScaffold {
         Column(
             modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colors.background),
@@ -51,6 +55,14 @@ fun EmptyScreen() {
                 color = MaterialTheme.colors.onPrimary,
                 style = MaterialTheme.typography.subtitle1
             )
+            Spacer(Modifier.height(32.dp))
+            Button(
+                onClick = retry,
+                modifier = Modifier.wrapContentSize(),
+                shape = RoundedCornerShape(32.dp)
+            ) {
+                Text(stringResource(R.string.retry_button_title))
+            }
         }
     }
 }

@@ -17,4 +17,5 @@
     <string name="detail_specie_title">Specie:</string>
     <string name="detail_status_title">Status:</string>
     <string name="detail_gender_title">Gender:</string>
+    <string name="retry_button_title">Retry</string>
 </resources>

@@ -20,9 +20,10 @@ class CharactersViewModel @Inject constructor(
     val state: StateFlow<CharactersState>
         get() = _state
 
-    init {
-        _state.value = CharactersState.Loading
-        loadItems(1)
+    init { initialDownload() }
+
+    fun retry() {
+        initialDownload()
     }
 
     fun loadItems(index: Int? = null) {
@@ -44,5 +45,10 @@ class CharactersViewModel @Inject constructor(
                 )
             }
         }
+    }
+
+    private fun initialDownload() {
+        _state.value = CharactersState.Loading
+        loadItems(1)
     }
 }

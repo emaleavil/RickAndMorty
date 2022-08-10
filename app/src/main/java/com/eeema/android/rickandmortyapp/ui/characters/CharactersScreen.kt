@@ -63,9 +63,9 @@ fun CharactersScreen(
     RickAndMortyScreenScaffold {
         val state: CharactersState by viewModel.state.collectAsState()
         when (state) {
-            is CharactersState.Initial -> EmptyScreen()
+            is CharactersState.Initial -> EmptyScreen(viewModel::retry)
             is CharactersState.Loading -> LoaderScreen()
-            is CharactersState.Failed -> ErrorScreen()
+            is CharactersState.Failed -> ErrorScreen(viewModel::retry)
             is CharactersState.Success ->
                 ListScreen(
                     state as CharactersState.Success,
