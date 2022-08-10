@@ -44,6 +44,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.eeema.android.data.model.Character
+import com.eeema.android.data.model.Gender
+import com.eeema.android.data.model.Status
 import com.eeema.android.rickandmortyapp.R
 import com.eeema.android.rickandmortyapp.ui.components.RickAndMortyScreenScaffold
 import com.eeema.android.rickandmortyapp.ui.extensions.isFirstItemVisible
@@ -87,7 +89,9 @@ fun ListScreen(
         items(items = state.data) { character -> ItemContent(character, navigate) }
     }
 
-    if (scrollContext.isBottom) { loadNewPage(state.nextPage) }
+    if (scrollContext.isBottom) {
+        loadNewPage(state.nextPage)
+    }
 }
 
 @Composable
@@ -181,33 +185,35 @@ fun CharacterImage(url: String) {
 @Preview(showBackground = true)
 @Composable
 fun CharactersScreenPreview() {
+    val state = CharactersState.Success(
+        listOf(
+            Character(1, "Rick", Status.Alived, "Human", Gender.Male, "", ""),
+            Character(2, "Morty", Status.Dead, "Human", Gender.Male, "", ""),
+            Character(3, "Homer", Status.Unknown, "Human", Gender.Male, "", ""),
+            Character(3, "Marge", Status.Alived, "Human", Gender.Female, "", "")
+        ),
+        1
+    )
+
     RickAndMortyTheme {
-        /*RickAndMortyScreenScaffold {
-            ListScreen(
-                listOf(
-                    Character(1, "Rick", Status.Alived, "Human", Gender.Male, "", ""),
-                    Character(2, "Morty", Status.Dead, "Human", Gender.Male, "", ""),
-                    Character(3, "Homer", Status.Unknown, "Human", Gender.Male, "", ""),
-                    Character(3, "Marge", Status.Alived, "Human", Gender.Female, "", "")
-                )
-            )
-        }*/
+        RickAndMortyScreenScaffold { ListScreen(state) }
     }
 }
 
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun CharactersDarkScreenPreview() {
-    /*RickAndMortyTheme {
-        RickAndMortyScreenScaffold {
-            ListScreen(
-                listOf(
-                    Character(1, "Rick", Status.Alived, "Human", Gender.Male, "", ""),
-                    Character(2, "Morty", Status.Dead, "Human", Gender.Male, "", ""),
-                    Character(3, "Homer", Status.Unknown, "Human", Gender.Male, "", ""),
-                    Character(3, "Marge", Status.Alived, "Human", Gender.Female, "", "")
-                )
-            )
-        }
-    }*/
+    val state = CharactersState.Success(
+        listOf(
+            Character(1, "Rick", Status.Alived, "Human", Gender.Male, "", ""),
+            Character(2, "Morty", Status.Dead, "Human", Gender.Male, "", ""),
+            Character(3, "Homer", Status.Unknown, "Human", Gender.Male, "", ""),
+            Character(3, "Marge", Status.Alived, "Human", Gender.Female, "", "")
+        ),
+        1
+    )
+
+    RickAndMortyTheme {
+        RickAndMortyScreenScaffold { ListScreen(state) }
+    }
 }
