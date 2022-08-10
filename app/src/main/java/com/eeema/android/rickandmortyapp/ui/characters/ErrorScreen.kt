@@ -30,7 +30,7 @@ import com.eeema.android.rickandmortyapp.ui.theme.RickAndMortyTheme
 
 @Composable
 fun ErrorScreen(
-    retry: () -> Unit = {}
+    retry: (() -> Unit)? = null
 ) {
     RickAndMortyScreenScaffold {
         Column(
@@ -55,13 +55,16 @@ fun ErrorScreen(
                 color = MaterialTheme.colors.onPrimary,
                 style = MaterialTheme.typography.subtitle1
             )
-            Spacer(Modifier.height(32.dp))
-            Button(
-                onClick = retry,
-                modifier = Modifier.wrapContentSize(),
-                shape = RoundedCornerShape(32.dp)
-            ) {
-                Text(stringResource(R.string.retry_button_title))
+
+            if (retry != null) {
+                Spacer(Modifier.height(32.dp))
+                Button(
+                    onClick = retry,
+                    modifier = Modifier.wrapContentSize(),
+                    shape = RoundedCornerShape(32.dp)
+                ) {
+                    Text(stringResource(R.string.retry_button_title))
+                }
             }
         }
     }
