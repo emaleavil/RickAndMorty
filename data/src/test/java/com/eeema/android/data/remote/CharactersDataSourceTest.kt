@@ -52,7 +52,7 @@ class CharactersDataSourceTest {
             val character = result.getItem(0)
             assertThat(character.id).isEqualTo(1)
             assertThat(character.name).isEqualTo("Rick Sanchez")
-            assertThat(character.status).isEqualTo(Status.Alived)
+            assertThat(character.status).isEqualTo(Status.Alive)
             assertThat(character.species).isEqualTo("Human")
             assertThat(character.gender).isEqualTo(Gender.Male)
             assertThat(character.image)

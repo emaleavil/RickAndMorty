@@ -129,7 +129,7 @@ fun DetailRow(title: String, value: String) {
 fun DetailScreenPreview() {
     RickAndMortyTheme {
         RickAndMortyScreenScaffold {
-            DetailContent(Character(1, "Rick", Status.Alived, "Human", Gender.Male, "", ""))
+            DetailContent(Character(1, "Rick", Status.Alive, "Human", Gender.Male, "", ""))
         }
     }
 }
@@ -139,7 +139,7 @@ fun DetailScreenPreview() {
 fun DetailDarkScreenPreview() {
     RickAndMortyTheme {
         RickAndMortyScreenScaffold {
-            DetailContent(Character(1, "Rick", Status.Alived, "Human", Gender.Male, "", ""))
+            DetailContent(Character(1, "Rick", Status.Alive, "Human", Gender.Male, "", ""))
         }
     }
 }

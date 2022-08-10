@@ -64,7 +64,7 @@ class PageDeserializerTest {
                     Character(
                         1,
                         "Rick Sanchez",
-                        Status.Alived,
+                        Status.Alive,
                         "Human",
                         Gender.Male,
                         "https://rickandmortyapi.com/api/character/avatar/1.jpeg",

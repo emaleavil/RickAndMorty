@@ -187,10 +187,10 @@ fun CharacterImage(url: String) {
 fun CharactersScreenPreview() {
     val state = CharactersState.Success(
         listOf(
-            Character(1, "Rick", Status.Alived, "Human", Gender.Male, "", ""),
+            Character(1, "Rick", Status.Alive, "Human", Gender.Male, "", ""),
             Character(2, "Morty", Status.Dead, "Human", Gender.Male, "", ""),
             Character(3, "Homer", Status.Unknown, "Human", Gender.Male, "", ""),
-            Character(3, "Marge", Status.Alived, "Human", Gender.Female, "", "")
+            Character(3, "Marge", Status.Alive, "Human", Gender.Female, "", "")
         ),
         1
     )
@@ -205,10 +205,10 @@ fun CharactersScreenPreview() {
 fun CharactersDarkScreenPreview() {
     val state = CharactersState.Success(
         listOf(
-            Character(1, "Rick", Status.Alived, "Human", Gender.Male, "", ""),
+            Character(1, "Rick", Status.Alive, "Human", Gender.Male, "", ""),
             Character(2, "Morty", Status.Dead, "Human", Gender.Male, "", ""),
             Character(3, "Homer", Status.Unknown, "Human", Gender.Male, "", ""),
-            Character(3, "Marge", Status.Alived, "Human", Gender.Female, "", "")
+            Character(3, "Marge", Status.Alive, "Human", Gender.Female, "", "")
         ),
         1
     )

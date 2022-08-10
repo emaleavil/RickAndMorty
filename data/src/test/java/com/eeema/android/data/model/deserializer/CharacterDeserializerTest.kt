@@ -111,7 +111,7 @@ class CharacterDeserializerTest {
 
         assertThat(result.id).isEqualTo(1)
         assertThat(result.name).isEqualTo("Character")
-        assertThat(result.status).isEqualTo(Status.Alived)
+        assertThat(result.status).isEqualTo(Status.Alive)
         assertThat(result.species).isEqualTo("Human")
         assertThat(result.gender).isEqualTo(Gender.Female)
         assertThat(result.image).isEqualTo("https://image.url")

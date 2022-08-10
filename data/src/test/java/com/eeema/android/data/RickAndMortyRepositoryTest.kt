@@ -131,7 +131,7 @@ class RickAndMortyRepositoryTest {
         assertThat(page.nextPageIndex).isEqualTo(2)
         assertThat(character.id).isEqualTo(1)
         assertThat(character.name).isEqualTo("Rick Sanchez")
-        assertThat(character.status).isEqualTo(Status.Alived)
+        assertThat(character.status).isEqualTo(Status.Alive)
         assertThat(character.gender).isEqualTo(Gender.Male)
         assertThat(character.species).isEqualTo("Human")
         assertThat(character.url)

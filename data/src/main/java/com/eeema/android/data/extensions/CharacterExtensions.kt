@@ -28,7 +28,7 @@ fun Character.stringGender() = when (gender) {
 }
 
 fun Character.stringStatus() = when (status) {
-    Status.Alived -> JsonKeys.alive
+    Status.Alive -> JsonKeys.alive
     Status.Dead -> JsonKeys.dead
     else -> JsonKeys.unknown
 }
@@ -45,7 +45,7 @@ fun String.toGender() = when (this.lowercase()) {
 }
 
 fun String.toStatus() = when (this.lowercase()) {
-    JsonKeys.alive -> Status.Alived
+    JsonKeys.alive -> Status.Alive
     JsonKeys.dead -> Status.Dead
     else -> Status.Unknown
 }
